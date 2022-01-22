@@ -3,6 +3,10 @@ const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 
+// Load environment variables from .env file, where API keys and passwords are configured
+require('dotenv').config();
+
+// Create Express server
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -16,16 +20,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.use('/', require('./routes/index.route'));
 
+// Catch 404
+app.use(require('./middlewares/notFound'));
+
 // Port assignment
 const server = app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
-});
-
-// Catch 404
-app.use((_req, res, _next) => {
-  res.status(404).send({
-    data: '404 - Not Found',
-  });
 });
 
 module.exports = { app, server };
