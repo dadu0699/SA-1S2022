@@ -7,7 +7,7 @@ const writeLog = (log) => {
   const date = new Date();
   const timestamp = date.toISOString();
 
-  const logPath = path.resolve('public/logs.json');
+  const logPath = path.resolve('public/transactions.log');
   const logObj = {
     id: uuidv4(),
     timestamp,
