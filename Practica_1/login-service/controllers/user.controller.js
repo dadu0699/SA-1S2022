@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 
 const logPath = path.resolve('data/users.json');
 const { generateToken } = require('../helpers/jwt');
+const { writeLog } = require('../helpers/logHandler');
 
 const encryptPasswords = async (_req, res) => {
   try {
@@ -29,15 +30,36 @@ const signin = async (req, res) => {
     const data = JSON.parse(content);
 
     const user = data.find((u) => u.username === username);
-    if (!user)
+    if (!user) {
+      writeLog({
+        username,
+        action: 'signin',
+        status: 'fail',
+        message: unauthorizedMSG,
+      });
       return res.status(400).send({ code: 400, data: unauthorizedMSG });
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch)
+    if (!isMatch) {
+      writeLog({
+        user: username,
+        action: 'signin',
+        status: 'fail',
+        message: unauthorizedMSG,
+      });
       return res.status(400).send({ code: 400, data: unauthorizedMSG });
+    }
 
     const token = await generateToken(user);
     const response = { username, role: user.role, token };
+
+    writeLog({
+      user: username,
+      action: 'signin',
+      status: 'success',
+      message: 'User logged in',
+    });
     res.status(200).send({ code: 200, data: response });
   } catch (err) {
     console.error(err);
