@@ -51,8 +51,8 @@ const signin = async (req, res) => {
       return res.status(400).send({ code: 400, data: unauthorizedMSG });
     }
 
-    const token = await generateToken(user);
-    const response = { username, role: user.role, token };
+    const payload = { id: user.id, username, role: user.role };
+    const token = await generateToken(payload);
 
     writeLog({
       user: username,
@@ -60,7 +60,7 @@ const signin = async (req, res) => {
       status: 'success',
       message: 'User logged in',
     });
-    res.status(200).send({ code: 200, data: response });
+    res.status(200).send({ code: 200, data: { ...payload, token } });
   } catch (err) {
     console.error(err);
     res.status(500).send({ code: 500, data: err });
