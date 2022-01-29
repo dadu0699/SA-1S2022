@@ -9,7 +9,7 @@ const { writeLog } = require('../helpers/logHandler');
 const encryptPasswords = async (_req, res) => {
   try {
     const content = fs.readFileSync(logPath, 'utf8');
-    let data = JSON.parse(content);
+    const data = JSON.parse(content);
 
     for (const u of data) u.password = await bcrypt.hash(u.password, 10);
 
