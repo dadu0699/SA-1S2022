@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', require('./routes/index.route'));
-// app.use('/logs', express.static(path.resolve('logs')));
+app.use('/', require('./routes/user.route'));
 
 // Catch 404
 app.use(require('./middlewares/notFound'));
