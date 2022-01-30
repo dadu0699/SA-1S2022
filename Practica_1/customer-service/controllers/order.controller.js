@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const logPath = path.resolve('data/orders.json');
+const filePath = path.resolve('data/orders.json');
 const { orderStatus } = require('../utils/status');
 const { writeLog } = require('../helpers/logHandler');
 
@@ -20,7 +20,7 @@ const requestOrder = async (req, res) => {
   }
 
   try {
-    const content = fs.readFileSync(logPath, 'utf8');
+    const content = fs.readFileSync(filePath, 'utf8');
     const data = JSON.parse(content);
 
     const oderID = data[data.length - 1].order_id + 1;
@@ -33,7 +33,7 @@ const requestOrder = async (req, res) => {
       delivery_order_status: orderStatus[0],
     };
     data.push(newOrder);
-    fs.writeFileSync(logPath, JSON.stringify(data));
+    fs.writeFileSync(filePath, JSON.stringify(data));
 
     writeLog({
       username,
@@ -64,7 +64,7 @@ const getStatus = (req, res) => {
   }
 
   try {
-    const content = fs.readFileSync(logPath, 'utf8');
+    const content = fs.readFileSync(filePath, 'utf8');
     const data = JSON.parse(content);
     const order = data.find(
       (order) =>

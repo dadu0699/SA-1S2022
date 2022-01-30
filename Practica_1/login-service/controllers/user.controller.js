@@ -2,18 +2,18 @@ const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcrypt');
 
-const logPath = path.resolve('data/users.json');
+const filePath = path.resolve('data/users.json');
 const { generateToken } = require('../helpers/jwt');
 const { writeLog } = require('../helpers/logHandler');
 
 const encryptPasswords = async (_req, res) => {
   try {
-    const content = fs.readFileSync(logPath, 'utf8');
+    const content = fs.readFileSync(filePath, 'utf8');
     const data = JSON.parse(content);
 
     for (const u of data) u.password = await bcrypt.hash(u.password, 10);
 
-    fs.writeFileSync(logPath, JSON.stringify(data));
+    fs.writeFileSync(filePath, JSON.stringify(data));
     res.status(500).send({ code: 500, data });
   } catch (err) {
     console.error(err);
@@ -26,7 +26,7 @@ const signin = async (req, res) => {
   const unauthorizedMSG = 'Incorrect username and/or password';
 
   try {
-    const content = fs.readFileSync(logPath, 'utf8');
+    const content = fs.readFileSync(filePath, 'utf8');
     const data = JSON.parse(content);
 
     const user = data.find((u) => u.username === username);
