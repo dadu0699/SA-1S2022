@@ -1,4 +1,4 @@
-# Customer Service
+# Restaurant Service
 
 # .env File
 
