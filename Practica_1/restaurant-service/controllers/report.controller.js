@@ -14,8 +14,7 @@ const readFile = (res, filePath) => {
 };
 
 const dataReport = (_req, res) => {
-  // TODO: rename file to correct name
-  const filePath = path.resolve('data/fileName.json');
+  const filePath = path.resolve('data/restaurants.json');
   readFile(res, filePath);
 };
 

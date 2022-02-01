@@ -1,0 +1,24 @@
+[
+    {
+        "restaurant_id": 2,
+        "nombre": "McDonalds",
+        "orders": [
+            {
+                "order_id": 0,
+                "client_order_status": "COMPLETED",
+                "delivery_order_status": "DELIVERED"
+            }
+        ]
+    },
+    {
+        "restaurant_id": 3,
+        "nombre": "Burguer King",
+        "orders": [
+            {
+                "order_id": 1,
+                "client_order_status": "COMPLETED",
+                "delivery_order_status": "DELIVERED"
+            }
+        ]
+    }
+]
