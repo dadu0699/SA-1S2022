@@ -14,7 +14,7 @@ const encryptPasswords = async (_req, res) => {
     for (const u of data) u.password = await bcrypt.hash(u.password, 10);
 
     fs.writeFileSync(filePath, JSON.stringify(data));
-    res.status(500).send({ code: 500, data });
+    res.status(200).send({ code: 200, data });
   } catch (err) {
     console.error(err);
     res.status(500).send({ code: 500, data: err });

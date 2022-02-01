@@ -16,16 +16,16 @@ const requestOrder = async (req, res) => {
       status: 'failed',
       message: 'User is not a customer',
     });
-    res.status(401).send({ code: 401, data: 'Unauthorized' });
+    return res.status(401).send({ code: 401, data: 'Unauthorized' });
   }
 
   try {
     const content = fs.readFileSync(filePath, 'utf8');
     const data = JSON.parse(content);
 
-    const oderID = data[data.length - 1].order_id + 1;
+    const orderID = data[data.length - 1].order_id + 1;
     const newOrder = {
-      order_id: oderID,
+      order_id: orderID,
       user: { id: userID, username },
       products,
       restaurant_id,
@@ -60,7 +60,7 @@ const getStatus = (req, res) => {
       status: 'failed',
       message: 'User is not a customer',
     });
-    res.status(401).send({ code: 401, data: 'Unauthorized' });
+   return res.status(401).send({ code: 401, data: 'Unauthorized' });
   }
 
   try {

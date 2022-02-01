@@ -16,7 +16,7 @@ const receiveOrder = async (req, res) => {
             status: 'failed',
             message: 'User is not a restaurant',
         });
-        res.status(401).send({ code: 401, data: 'Unauthorized' });
+        return res.status(401).send({ code: 401, data: 'Unauthorized' });
     }
     try {
         const content = fs.readFileSync(filePath, 'utf8');
@@ -75,7 +75,7 @@ const setStatus = (req, res) => {
             status: 'failed',
             message: 'User is not a restaurant',
         });
-        res.status(401).send({ code: 401, data: 'Unauthorized' });
+      return  res.status(401).send({ code: 401, data: 'Unauthorized' });
     }
 
     try {
