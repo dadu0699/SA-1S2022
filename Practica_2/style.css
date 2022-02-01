@@ -75,6 +75,7 @@ body {
   background: var(--background);
   border-radius: 15px;
 }
+
 .ticket-visual-wrapper:before {
   content: "";
   display: block;
@@ -120,6 +121,7 @@ body {
   background: var(--background);
   z-index: 4;
 }
+
 .ticket-visual_profile {
   padding: calc(39px * var(--size)) calc(155px * var(--size))
     calc(39px * var(--size)) calc(58px * var(--size));
