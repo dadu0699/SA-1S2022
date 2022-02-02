@@ -6,7 +6,7 @@ const { orderStatus } = require('../utils/status');
 const { writeLog } = require('../helpers/logHandler');
 
 const receiveOrder = async (req, res) => {
-    const { orderID, restaurant_id } = req.body;
+    const { orderID } = req.body;
     const { id: userID, username, role } = req.user;
 
     if (role !== 'RESTAURANT') {
