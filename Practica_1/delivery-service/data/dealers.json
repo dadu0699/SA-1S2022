@@ -1,0 +1,24 @@
+[
+    {
+        "deliveryman_id":"5",
+        "name":"Bruno",
+        "orders":[
+            {
+                "order_id": 1,
+                "client_order_status": "SCHEDULED",
+                "delivery_order_status": "DELIVERED"
+            }
+        ]
+    },
+    {
+        "deliveryman_id":"4",
+        "name":"Fredy Contreras",
+        "orders":[
+            {
+                "order_id": 2,
+                "client_order_status": "PENDING",
+                "delivery_order_status": "DELIVERED"
+            }
+        ]
+    }
+]
