@@ -43,7 +43,7 @@ Para realizar la creación de la imagen de Docker es necesario ejecutar el sigui
 docker build -t dadu0699/pareja3 .
 ```
 
-Luego es necesario tener una cuenta en [Docker Hub](https://hub.docker.com/) para poder publicar la imagen de la práctica y así poder ser descargada por ser descargada por el otro integrante de la pareja.
+Luego es necesario tener una cuenta en [Docker Hub](https://hub.docker.com/) para poder publicar la imagen de la práctica y así poder ser descargada por el otro integrante de la pareja.
 
 ```bash
 # Publicar imagen en Docker hub
