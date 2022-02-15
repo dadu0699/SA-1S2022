@@ -24,6 +24,7 @@ pipeline {
             steps {
 				script{
 					sh '''
+                        cd Practice_3
 						sudo docker build \
                         --build-arg VITE_STUDENT1ID=${VITE_STUDENT1ID} \
                         --build-arg VITE_STUDENT1NICKNAME=${VITE_STUDENT1NICKNAME} \
@@ -42,6 +43,7 @@ pipeline {
             steps {
 				script{
 					sh '''
+                        cd Practice_3
                         npm install
 						npm run test
                     '''
