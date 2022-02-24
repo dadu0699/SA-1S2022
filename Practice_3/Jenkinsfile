@@ -25,7 +25,7 @@ pipeline {
         script{
           sh '''
             cd Practice_3
-            docker build \
+            sudo docker build \
               --build-arg VITE_STUDENT1ID=${VITE_STUDENT1ID} \
               --build-arg VITE_STUDENT1NICKNAME=${VITE_STUDENT1NICKNAME} \
               --build-arg VITE_STUDENT1NAME="${VITE_STUDENT1NAME}" \
@@ -54,12 +54,12 @@ pipeline {
       steps {
         script{
           sh '''
-            docker stop ${container_name} || true
-            docker rm ${container_name} || true
-            docker run -d -p ${container_port}:${container_port} \
+            sudo docker stop ${container_name} || true
+            sudo docker rm ${container_name} || true
+            sudo docker run -d -p ${container_port}:${container_port} \
               --restart always \
               --name ${container_name} ${image_name}:${image_tag}
-            docker system prune -f
+            sudo docker system prune -f
           '''
         }
       }
