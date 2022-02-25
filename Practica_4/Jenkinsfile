@@ -24,7 +24,7 @@ pipeline {
       steps {
         script{
           sh '''
-            cd Practice_3
+            cd Practica_4
             docker build \
               --build-arg VITE_STUDENT1ID=${VITE_STUDENT1ID} \
               --build-arg VITE_STUDENT1NICKNAME=${VITE_STUDENT1NICKNAME} \
@@ -45,7 +45,7 @@ pipeline {
       }
       steps {
         withSonarQubeEnv('SonarQube') {
-            sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=./Practice_3/sonar-project.properties"
+            sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=./Practica_4/sonar-project.properties"
         }
         timeout(time: 10, unit: 'MINUTES') {
             waitForQualityGate abortPipeline: true
@@ -56,7 +56,7 @@ pipeline {
       steps {
         script{
           sh '''
-            cd Practice_3
+            cd Practica_4
             npm install
             npm run test
           '''
