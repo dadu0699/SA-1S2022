@@ -1,0 +1,81 @@
+pipeline {
+  agent any
+  environment {
+    VITE_STUDENT1ID= credentials('id-s1')
+    VITE_STUDENT1NICKNAME= credentials('nickname-s1')
+    VITE_STUDENT1NAME= credentials('name-s1')
+    VITE_STUDENT1IMG= credentials('img-s1')
+
+    VITE_STUDENT2ID= credentials('id-s2')
+    VITE_STUDENT2NICKNAME= credentials('nickname-s2')
+    VITE_STUDENT2NAME= credentials('name-s2')
+    VITE_STUDENT2IMG= credentials('img-s2')
+  }
+
+  parameters {
+    string(name: 'container_name', defaultValue: 'practice3', description: 'Nombre del contenedor')
+    string(name: 'image_name', defaultValue: 'pareja3', description: 'Nombre de la imagen')
+    string(name: 'image_tag', defaultValue: 'latest', description: 'Etiqueta de la imagen')
+    string(name: 'container_port', defaultValue: '80', description: 'Puerto a publicar')
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        script{
+          sh '''
+            cd Practice_3
+            docker build \
+              --build-arg VITE_STUDENT1ID=${VITE_STUDENT1ID} \
+              --build-arg VITE_STUDENT1NICKNAME=${VITE_STUDENT1NICKNAME} \
+              --build-arg VITE_STUDENT1NAME="${VITE_STUDENT1NAME}" \
+              --build-arg VITE_STUDENT1IMG=${VITE_STUDENT1IMG} \
+              --build-arg VITE_STUDENT2ID=${VITE_STUDENT2ID} \
+              --build-arg VITE_STUDENT2NICKNAME=${VITE_STUDENT2NICKNAME} \
+              --build-arg VITE_STUDENT2NAME="${VITE_STUDENT2NAME}" \
+              --build-arg VITE_STUDENT2IMG=${VITE_STUDENT2IMG} \
+              -t ${image_name}:${image_tag} .
+          '''
+        }
+      }
+    }
+    stage('Sonarqube') {
+      environment {
+        scannerHome = tool 'SonarQubeScanner'
+      }
+      steps {
+        withSonarQubeEnv('SonarQube') {
+            sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=./Practice_3/sonar-project.properties"
+        }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        script{
+          sh '''
+            cd Practice_3
+            npm install
+            npm run test
+          '''
+        }
+      }
+    }
+    stage('Deploy') {
+      steps {
+        script{
+          sh '''
+            docker stop ${container_name} || true
+            docker rm ${container_name} || true
+            docker run -d -p ${container_port}:${container_port} \
+              --restart always \
+              --name ${container_name} ${image_name}:${image_tag}
+            docker system prune -f
+          '''
+        }
+      }
+    }
+  }
+}
