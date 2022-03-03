@@ -35,7 +35,7 @@ pipeline {
               --build-arg VITE_STUDENT2NICKNAME=${VITE_STUDENT2NICKNAME} \
               --build-arg VITE_STUDENT2NAME="${VITE_STUDENT2NAME}" \
               --build-arg VITE_STUDENT2IMG=${VITE_STUDENT2IMG} \
-              -t ${image_name}:${image_tag} .
+              -t ${dockerhub_id}/${image_name}:${image_tag} .
           '''
         }
       }
