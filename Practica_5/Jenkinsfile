@@ -1,10 +1,10 @@
 pipeline {
   agent any
   environment {
-    VITE_STUDENT1ID= credentials('id-s1')
-    VITE_STUDENT1NICKNAME= credentials('nickname-s1')
-    VITE_STUDENT1NAME= credentials('name-s1')
-    VITE_STUDENT1IMG= credentials('img-s1')
+    VITE_STUDENT1ID = credentials('id-s1')
+    VITE_STUDENT1NICKNAME = credentials('nickname-s1')
+    VITE_STUDENT1NAME = credentials('name-s1')
+    VITE_STUDENT1IMG = credentials('img-s1')
 
     VITE_STUDENT2ID= credentials('id-s2')
     VITE_STUDENT2NICKNAME= credentials('nickname-s2')
@@ -17,6 +17,7 @@ pipeline {
     string(name: 'image_name', defaultValue: 'pareja3', description: 'Nombre de la imagen')
     string(name: 'image_tag', defaultValue: 'latest', description: 'Etiqueta de la imagen')
     string(name: 'container_port', defaultValue: '80', description: 'Puerto a publicar')
+    string(name: 'dockerhub_id', defaultValue: '201800726', description: 'Usuario Docker Hub')
   }
 
   stages {
@@ -24,7 +25,7 @@ pipeline {
       steps {
         script{
           sh '''
-            cd Practica_4
+            cd Practica_5
             docker build \
               --build-arg VITE_STUDENT1ID=${VITE_STUDENT1ID} \
               --build-arg VITE_STUDENT1NICKNAME=${VITE_STUDENT1NICKNAME} \
@@ -43,9 +44,22 @@ pipeline {
       steps {
         script{
           sh '''
-            cd Practica_4
+            cd Practica_5
             npm install
             npm run test
+          '''
+        }
+      }
+    }
+    stage('Docker Hub Push') {
+      environment {
+        DOKERHUB_PWD = credentials('dockerhub-pwd')
+      }
+      steps {
+        script{
+          sh '''
+            docker login -u ${dockerhub_id} -p ${DOKERHUB_PWD}
+            docker push ${dockerhub_id}/${image_name}:${image_tag}
           '''
         }
       }
