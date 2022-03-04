@@ -17,7 +17,7 @@
         password: "{{DOKERHUB_PWD}}"
     - name: ensure container is running
       docker_container:
-        name: "{{CONTAINER_NAME}}"
+        name: "practice5"
         state: started
         image: "201800726/pareja3:latest"
         pull: true
