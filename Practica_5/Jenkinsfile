@@ -15,7 +15,7 @@ pipeline {
   }
 
   parameters {
-    string(name: 'container_name', defaultValue: 'practice3', description: 'Nombre del contenedor')
+    string(name: 'container_name', defaultValue: 'practice5', description: 'Nombre del contenedor')
     string(name: 'image_name', defaultValue: 'pareja3', description: 'Nombre de la imagen')
     string(name: 'image_tag', defaultValue: 'latest', description: 'Etiqueta de la imagen')
     string(name: 'container_port', defaultValue: '80', description: 'Puerto a publicar')
@@ -63,9 +63,14 @@ pipeline {
         }
       }
     }
-    stage('Deploy') {
+    stage('Deploy Pre-Prod') {
       steps {
-        ansiblePlaybook become: true, credentialsId: 'ssh-servers', disableHostKeyChecking: true, extras: "-e DOKERHUB_PWD=${DOKERHUB_PWD}", installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'Practica_5/playbook.yml'
+        ansiblePlaybook become: true, credentialsId: 'ssh-servers', disableHostKeyChecking: true, extras: "-e DOCKERHUB_ID=${dockerhub_id}, -e DOKERHUB_PWD=${DOKERHUB_PWD}, -e CONTAINER_NAME=${container_name}, -e IMAGE=${image_name}", installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'Practica_5/pruebas.yml'
+      }
+    }
+    stage('Deploy Prod') {
+      steps {
+        ansiblePlaybook become: true, credentialsId: 'ssh-servers', disableHostKeyChecking: true, extras: "-e DOKERHUB_PWD=${DOKERHUB_PWD}", installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'Practica_5/produccion.yml'
       }
     }
   }
