@@ -3,11 +3,18 @@
   become: true
 
   tasks:
+    - name: Install python pip
+      yum:
+        name: python-pip
+        state: present
+    - name: Install docker-py python module
+      pip:
+        name: docker-py
+        state: present
     - name: log into docker hub registry
       docker_login:
         username: "201800726"
         password: "{{DOKERHUB_PWD}}"
-
     - name: ensure a container is running
       docker_container:
         name: practice5
