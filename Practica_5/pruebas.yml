@@ -13,13 +13,13 @@
         state: present
     - name: log into docker hub registry
       docker_login:
-        username: "{{DOCKERHUB_ID}}"
+        username: "201800726"
         password: "{{DOKERHUB_PWD}}"
     - name: ensure container is running
       docker_container:
         name: "{{CONTAINER_NAME}}"
         state: started
-        image: "{{DOCKERHUB_ID}}/{{IMAGE}}:latest"
+        image: "201800726/pareja3:latest"
         pull: true
         ports:
           - "8081:8081"
