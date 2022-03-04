@@ -5,7 +5,6 @@
   tasks:
     - name: log into docker hub registry
       docker_login:
-        email: "debymrj@gmail.com"
         username: "201800726"
         password: "{{DOKERHUB_PWD}}"
 
