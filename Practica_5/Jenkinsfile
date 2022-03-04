@@ -65,7 +65,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        ansiblePlaybook become: true, credentialsId: 'ssh-servers', extras: "-e DOKERHUB_PWD=${DOKERHUB_PWD}", installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'Practica_5/playbook.yml'
+        ansiblePlaybook become: true, credentialsId: 'ssh-servers', disableHostKeyChecking: true, extras: "-e DOKERHUB_PWD=${DOKERHUB_PWD}", installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'Practica_5/playbook.yml'
       }
     }
   }
