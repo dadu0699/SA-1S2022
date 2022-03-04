@@ -1,0 +1,19 @@
+---
+- hosts: servers
+  become: true
+
+  tasks:
+    - name: log into docker hub registry
+      docker_login:
+        email: "debymrj@gmail.com"
+        username: "201800726"
+        password: "{{DOKERHUB_PWD}}"
+
+    - name: ensure a container is running
+      docker_container:
+        name: practice5
+        state: started
+        image: "201800726/pareja3:latest"
+        pull: true
+        ports:
+          - "80:80"
