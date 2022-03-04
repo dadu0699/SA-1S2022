@@ -22,4 +22,4 @@
         image: "201800726/pareja3:latest"
         pull: true
         ports:
-          - "80:8081"
+          - "8081:80"
