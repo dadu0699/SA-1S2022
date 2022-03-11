@@ -68,8 +68,8 @@ pipeline {
         script{
           sh '''
             cd /etc/puppetlabs/code/environments/production/manifests/
-            puppet apply pruebas.app || true
-            puppet apply produccion.app || true
+            puppet apply pruebas.app||true
+            puppet apply produccion.app||true
           '''
         }
       }
