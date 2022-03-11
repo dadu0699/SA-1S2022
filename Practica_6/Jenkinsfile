@@ -63,14 +63,15 @@ pipeline {
         }
       }
     }
-    stage('Deploy Pre-Prod') {
+    stage('Deploy') {
       steps {
-        ansiblePlaybook become: true, credentialsId: 'ssh-servers', disableHostKeyChecking: true, extras: "-e DOKERHUB_PWD=${DOKERHUB_PWD}", installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'Practica_5/pruebas.yml'
-      }
-    }
-    stage('Deploy Prod') {
-      steps {
-        ansiblePlaybook become: true, credentialsId: 'ssh-servers', disableHostKeyChecking: true, extras: "-e DOKERHUB_PWD=${DOKERHUB_PWD}", installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'Practica_5/produccion.yml'
+        script{
+          sh '''
+            cd /etc/puppetlabs/code/environments/production/manifests/
+            puppet apply pruebas.app || true
+            puppet apply produccion.app || true
+          '''
+        }
       }
     }
   }
