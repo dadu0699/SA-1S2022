@@ -24,7 +24,7 @@ pipeline {
       steps {
         script{
           sh '''
-            cd Practice_3
+            cd Practica_3
             docker build \
               --build-arg VITE_STUDENT1ID=${VITE_STUDENT1ID} \
               --build-arg VITE_STUDENT1NICKNAME=${VITE_STUDENT1NICKNAME} \
@@ -39,24 +39,24 @@ pipeline {
         }
       }
     }
-    stage('Sonarqube') {
-      environment {
-        scannerHome = tool 'SonarQubeScanner'
-      }
-      steps {
-        withSonarQubeEnv('SonarQube') {
-            sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=./Practice_3/sonar-project.properties"
-        }
-        timeout(time: 10, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
-        }
-      }
-    }
+    // stage('Sonarqube') {
+    //   environment {
+    //     scannerHome = tool 'SonarQubeScanner'
+    //   }
+    //   steps {
+    //     withSonarQubeEnv('SonarQube') {
+    //         sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=./Practica_3/sonar-project.properties"
+    //     }
+    //     timeout(time: 10, unit: 'MINUTES') {
+    //         waitForQualityGate abortPipeline: true
+    //     }
+    //   }
+    // }
     stage('Test') {
       steps {
         script{
           sh '''
-            cd Practice_3
+            cd Practica_3
             npm install
             npm run test
           '''
