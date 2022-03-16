@@ -61,7 +61,7 @@ pipeline {
             docker rm ${container_name} || true
             docker run -d -p 8081:${container_port} \
               --restart always \
-              --name ${container_name} ${image_name}:${image_tag}
+              --name ${container_name} ${dockerhub_id}/${image_name}:${image_tag}
             docker system prune -f
           '''
         }
