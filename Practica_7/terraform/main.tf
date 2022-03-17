@@ -15,7 +15,7 @@ provider "google" {
 }
 
 resource "google_compute_instance" "vm_instance" {
-  name          = "practica_7-vm"
+  name          = "practica7-vm"
   machine_type  = "e2-medium"
 
   tags = ["jenkins", "allout"]
