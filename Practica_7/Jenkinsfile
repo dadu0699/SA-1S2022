@@ -42,6 +42,7 @@ pipeline {
         }
       }
     }
+
     stage('Test') {
       steps {
         script{
@@ -53,6 +54,7 @@ pipeline {
         }
       }
     }
+
     stage('Deploy Pruebas') {
       steps {
         script{
@@ -67,6 +69,7 @@ pipeline {
         }
       }
     }
+
     stage('Docker Hub Push') {
       steps {
         script{
@@ -77,11 +80,16 @@ pipeline {
         }
       }
     }
+
     stage('Deploy Produccion') {
       steps {
         script{
           sh '''
-            echo holis
+            terraform init -reconfigure
+            terraform validate
+            terraform apply -input=false -auto-approve --destroy
+            terraform plan -lock=false -out "planfile"
+            terraform apply -lock=false -input=false "planfile"
           '''
         }
       }
