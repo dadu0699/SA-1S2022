@@ -12,6 +12,7 @@ pipeline {
     VITE_STUDENT2IMG= credentials('img-s2')
 
     DOKERHUB_PWD = credentials('dockerhub-pwd')
+    GOOGLE_APPLICATION_CREDENTIALS = credentials('GOOGLE_APPLICATION_CREDENTIALS')
   }
 
   parameters {
@@ -85,6 +86,7 @@ pipeline {
       steps {
         script{
           sh '''
+            export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
             terraform init -reconfigure
             terraform validate
             terraform apply -input=false -auto-approve --destroy
