@@ -87,6 +87,8 @@ pipeline {
         script{
           sh '''
             export GOOGLE_APPLICATION_CREDENTIALS=${GOOGLE_APPLICATION_CREDENTIALS}
+            cd Practica_7/terraform
+
             terraform init -reconfigure
             terraform validate
             terraform apply -input=false -auto-approve --destroy
