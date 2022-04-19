@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Practice 8</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body class="grid">
+    <div class="left-column">
+      <div class="row">
+        <div class="ticket-visual_visual" id="ticket-1">
+          <div class="left"></div>
+          <div class="right"></div>
+          <div class="ticket-visual-wrapper">
+            <div class="ticket-visual_profile">
+              <div class="ticket-profile_profile">
+                <img class="ticket-profile_image" id="ticket-1-profile_image" />
+                <div class="ticket-profile_text">
+                  <p class="ticket-profile_name" id="ticket-1-name"></p>
+                  <p class="ticket-profile_username" id="ticket-1-username">
+                    <span class="ticket-profile_githubIcon">
+                      <img src="./github.svg" alt="github icon" />
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="ticket-event">Software Avanzado B - Pareja 3</div>
+            </div>
+            <div class="ticket-visual_ticket-number-wrapper">
+              <div class="ticket-visual_ticket-number" id="ticket-1-number">
+                №
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="ticket-visual_visual" id="ticket-2">
+          <div class="left"></div>
+          <div class="right"></div>
+          <div class="ticket-visual-wrapper">
+            <div class="ticket-visual_profile">
+              <div class="ticket-profile_profile">
+                <img class="ticket-profile_image" id="ticket-2-profile_image" />
+                <div class="ticket-profile_text">
+                  <p class="ticket-profile_name" id="ticket-2-name"></p>
+                  <p class="ticket-profile_username" id="ticket-2-username">
+                    <span class="ticket-profile_githubIcon">
+                      <img src="./github.svg" alt="github icon" />
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="ticket-event">Software Avanzado B - Pareja 3</div>
+            </div>
+            <div class="ticket-visual_ticket-number-wrapper">
+              <div class="ticket-visual_ticket-number" id="ticket-2-number">
+                №
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-column">
+      <div class="wrapper">
+        <div class="button-container">
+          <div class="button">
+            <span class="content">
+              <i class="icon fa fa-heart" aria-hidden="true"></i>
+              <i class="icon far fa-heart" aria-hidden="true"></i>
+              <span class="text like">Like<span class="text d">d</span></span>
+
+              <span class="text number" id="like-count"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
