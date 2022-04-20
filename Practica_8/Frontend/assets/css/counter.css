@@ -1,0 +1,53 @@
+:root {
+  --size: 1;
+  --background: #000;
+  --color1: #d25778;
+  --text: #8a8f98;
+}
+
+.wrapper .button-container {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+}
+
+.button {
+  height: 50px;
+  width: 170px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 12.5px;
+  cursor: pointer;
+}
+
+.content .icon {
+  font-size: 25px;
+  color: var(--color1);
+}
+
+.content .icon.fa {
+  display: none;
+}
+
+.content .text {
+  font-size: 25px;
+  color: var(--background);
+}
+
+.content .text.like {
+  margin-left: 10px;
+}
+
+.content .text.d {
+  opacity: 0;
+  display: inline-block;
+  transform: translateX(12px);
+}
+
+.content .text.number {
+  margin-left: 10px;
+  color: var(--text);
+}

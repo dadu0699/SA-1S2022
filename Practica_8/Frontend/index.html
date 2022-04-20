@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/assets/imgs/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Practice 8</title>
@@ -18,8 +18,8 @@
 
   <body class="grid">
     <div class="left-column">
-      <div class="row">
-        <div class="ticket-visual_visual" id="ticket-1">
+      <div class="ticket-row" id="ticket-1">
+        <div class="ticket-visual_visual">
           <div class="left"></div>
           <div class="right"></div>
           <div class="ticket-visual-wrapper">
@@ -30,7 +30,7 @@
                   <p class="ticket-profile_name" id="ticket-1-name"></p>
                   <p class="ticket-profile_username" id="ticket-1-username">
                     <span class="ticket-profile_githubIcon">
-                      <img src="./github.svg" alt="github icon" />
+                      <img src="/assets/imgs/github.svg" alt="github icon" />
                     </span>
                   </p>
                 </div>
@@ -46,8 +46,8 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="ticket-visual_visual" id="ticket-2">
+      <div class="ticket-row" id="ticket-2">
+        <div class="ticket-visual_visual">
           <div class="left"></div>
           <div class="right"></div>
           <div class="ticket-visual-wrapper">
@@ -91,6 +91,8 @@
       </div>
     </div>
 
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="/assets/js/main.js"></script>
+    <script type="module" src="/assets/js/ticket.js"></script>
+    <script type="module" src="/assets/js/counter.js"></script>
   </body>
 </html>
