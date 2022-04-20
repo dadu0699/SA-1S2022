@@ -9,9 +9,10 @@
   },
   "devDependencies": {
     "jest": "27.5.1",
-    "vite": "2.7.2"
+    "vite": "2.9.5"
   },
   "dependencies": {
-    "gsap": "^3.10.3"
+    "gsap": "3.10.3",
+    "uuid": "8.3.2"
   }
 }

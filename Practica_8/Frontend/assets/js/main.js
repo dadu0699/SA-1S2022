@@ -33,5 +33,3 @@ addText('ticket-2-number', VITE_STUDENT2ID);
 addText('ticket-2-name', VITE_STUDENT2NAME);
 addText('ticket-2-username', VITE_STUDENT2NICKNAME);
 addIMG('ticket-2-profile_image', VITE_STUDENT2IMG, VITE_STUDENT2NICKNAME);
-
-addText('like-count', 0);
