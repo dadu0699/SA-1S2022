@@ -17,8 +17,12 @@ app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Database connection
+require('./configs/database');
+
 // Routes
 app.use('/', require('./routes/index.route.js'));
+app.use('/api/v1/like', require('./routes/like.route.js'));
 
 // Port assignment
 const server = app.listen(PORT, () => {
