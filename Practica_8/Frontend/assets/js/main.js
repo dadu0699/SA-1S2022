@@ -33,3 +33,8 @@ addText('ticket-2-number', VITE_STUDENT2ID);
 addText('ticket-2-name', VITE_STUDENT2NAME);
 addText('ticket-2-username', VITE_STUDENT2NICKNAME);
 addIMG('ticket-2-profile_image', VITE_STUDENT2IMG, VITE_STUDENT2NICKNAME);
+
+window.addEventListener('load', () => {
+  document.getElementsByClassName('left-column')[0].style.display = '';
+  document.getElementsByClassName('right-column')[0].style.display = '';
+});
