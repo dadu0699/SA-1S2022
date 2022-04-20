@@ -1,10 +1,3 @@
-:root {
-  --size: 1;
-  --background: #000;
-  --color1: #d25778;
-  --text: #8a8f98;
-}
-
 .wrapper .button-container {
   align-items: center;
   display: flex;
@@ -15,17 +8,17 @@
 }
 
 .button {
-  height: 50px;
-  width: 170px;
-  background-color: #fff;
+  background-color: #d25778;
   border-radius: 5px;
-  padding: 12.5px;
   cursor: pointer;
+  height: 50px;
+  padding: 12.5px;
+  width: 170px;
 }
 
 .content .icon {
   font-size: 25px;
-  color: var(--color1);
+  color: #fff;
 }
 
 .content .icon.fa {
@@ -33,8 +26,9 @@
 }
 
 .content .text {
+  color: #fff;
   font-size: 25px;
-  color: var(--background);
+  font-weight: 200;
 }
 
 .content .text.like {
@@ -42,12 +36,12 @@
 }
 
 .content .text.d {
-  opacity: 0;
   display: inline-block;
+  opacity: 0;
   transform: translateX(12px);
 }
 
 .content .text.number {
+  color: #fff;
   margin-left: 10px;
-  color: var(--text);
 }
